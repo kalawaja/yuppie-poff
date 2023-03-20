@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Yuppie - Poff</title>
+    <link rel="stylesheet" href="./style.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <section>
+
+        <header>
+            <h1><a href="index.htm">Yuppie - Poff</a></h1>
+            <p>Hoşgeldin, <span id="username">T€st</span>!</p>
+        </header>
+        
+        <main>
+            <canvas id="chart" height="400px" width="100%"></canvas>
+        </main>
+
+        <h2 class="titles">Düşüncelerin</h2>
+        
+        <article>
+            <textarea id="text" placeholder="255 karaktere kadar yazabilirsiniz..."></textarea>
+        </article>
+
+        <div id="label">
+            <label for="mutlu"><input type="radio" name="emoji" value="mutlu" id="mutlu" title="Mutlu">😄</label>
+		    <label for="notr"><input type="radio" name="emoji" value="notr" id="notr" title="Nötr">😐</label>
+		    <label for="uzgun"><input type="radio" name="emoji" value="uzgun" id="uzgun" title="Üzgün">😔</label>
+            <button onclick="gonder()" id="submitButton">Gönder</button>
+        </div>
+
+        <h2 class="titles">Son Güncellemeler</h2>
+        <div id="sonuc">
+        </div>
+    </section>
+    
+    <script src="script.js"></script>
+</body>
+</html>
