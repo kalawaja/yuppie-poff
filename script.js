@@ -1,15 +1,15 @@
-// CHART İŞLEMLERİ
 let durumlar = [];
 
 let chartData = {
-	labels: [],
-	datasets: [{
-		label: 'Mood Tracker',
-		data: [],
-		backgroundColor: 'rgba(255, 99, 132, 0.2)',
-		borderColor: 'rgba(255, 99, 132, 1)',
-		borderWidth: 1
-	}]
+    labels: [],
+    datasets: [{
+        label: 'İndim Şiştim Grafik Tablosu',
+        data: [],
+        backgroundColor: 'rgba(233, 255, 92, 0.3)',
+        borderColor: 'rgba(233, 255, 92,1)',
+        color: "#fff",
+        borderWidth: 1
+    }]
 };
 
 let chartOptions = {
@@ -34,58 +34,63 @@ let myChart = new Chart(document.getElementById('chart'), {
 });
 
 function gonder() {
-	let text = document.getElementById("text").value;
-	if (text.length > 0) {
-		let emoji = document.querySelector('input[name="emoji"]:checked').value;
+    let text = document.getElementById("text").value;
+    if (text.length > 0) {
+        let emoji = document.querySelector('input[name="emoji"]:checked').value;
 
-		let puan = 0;
-		let divClass = "";
-		if (emoji === "mutlu") {
-			divClass = "sonuc-mutlu";
-			if (durumlar.length > 0 && durumlar[0].puan > 0) {
-				puan = durumlar[0].puan + 1;
-			} else {
-				puan = 1;
-			}
-		} else if (emoji === "uzgun") {
-			divClass = "sonuc-uzgun";
-			if (durumlar.length > 0 && durumlar[0].puan < 0) {
-				puan = durumlar[0].puan - 1;
-			} else {
-				puan = -1;
-			}
-		} else {
-			divClass = "sonuc-notr";
-			if (durumlar.length > 0) {
-				puan = durumlar[0].puan;
-			} else {
-				puan = 0;
-			}
-		}
+        let puan = 0;
+        let divClass = "";
+        if (emoji === "yuppie") {
+            divClass = "result-yuppie";
+            if (durumlar.length > 0 && durumlar[0].puan > 0) {
+                puan = durumlar[0].puan + 1.0;
+            } else {
+                puan = 1;
+            }
+        } else if (emoji === "poff") {
+            divClass = "result-poff";
+            if (durumlar.length > 0 && durumlar[0].puan < 0) {
+                puan = durumlar[0].puan - 1;
+            } else {
+                puan = -1.0;
+            }
+        } else {
+            divClass = "result-ehh";
+            if (durumlar.length > 0) {
+                puan = durumlar[0].puan;
+            } else {
+                puan = 0.0;
+            }
+        }
 
-		let isim = getIsim();
-		document.cookie = `isim=${encodeURIComponent(isim)}; expires=${getExpiryDate(365)}`;
+        let isim = getIsim();
+        document.cookie = `isim=${encodeURIComponent(isim)}; expires=${getExpiryDate(365)}`;
 
-		durumlar.unshift({ isim: isim, puan: puan, saat: new Date() });
+        durumlar.unshift({
+            isim: isim,
+            puan: puan,
+            saat: new Date()
+        });
 
-		let saat = new Date().toLocaleTimeString();
-		let index = chartData.labels.indexOf(saat);
-		if (index === -1) {
-			chartData.labels.push(saat);
-			chartData.datasets[0].data.push(puan);
-		} else {
-			chartData.datasets[0].data[index] = puan;
-		}
+        let saat = new Date().toLocaleTimeString();
+        let index = chartData.labels.indexOf(saat);
+        if (index === -1) {
+            chartData.labels.push(saat);
+            chartData.datasets[0].data.push(puan);
+        } else {
+            chartData.datasets[0].data[index] = puan;
+        }
 
-		myChart.update();
+        myChart.update();
 
-		let sonucDiv = document.getElementById("sonuc");
-		sonucDiv.innerHTML = `<div class="${divClass}">${isim} (${saat}): ${text}</div>` + sonucDiv.innerHTML;
-		document.getElementById("text").value = "";
+        let sonucDiv = document.getElementById("sonuc");
+        sonucDiv.innerHTML = `<div class="${divClass}"><strong style='font-weight:900'>${isim} (${saat}):</strong> ${text}</div>` + sonucDiv.innerHTML;
+        document.getElementById("text").value = "";
 
-		listele();
-	}
+        listele();
+    }
 }
+
 
 function listele() {
     let listeDiv = document.getElementById("liste");
@@ -100,32 +105,32 @@ function listele() {
 }
 
 function getIsim() {
-	let isim = getCookie("isim");
-	if (!isim) {
-		isim = prompt("Lütfen bir kullanıcı adı girin:");
-		if (!isim) {
-			isim = "Ziyaretçi";
-		}
-		document.cookie = `isim=${encodeURIComponent(isim)}; expires=${getExpiryDate(365)}`;
-	}
-	return isim;
+    let isim = getCookie("isim");
+    if (!isim) {
+        isim = prompt("Lütfen bir kullanıcı adı girin:");
+        if (!isim) {
+            isim = "T€st";
+        }
+        document.cookie = `isim=${encodeURIComponent(isim)}; expires=${getExpiryDate(365)}`;
+    }
+    return isim;
 }
 
 function getCookie(name) {
-	let cookies = document.cookie.split("; ");
-	for (let i = 0; i < cookies.length; i++) {
-		let parts = cookies[i].split("=");
-		if (parts[0] === name) {
-			return decodeURIComponent(parts[1]);
-		}
-	}
-	return null;
+    let cookies = document.cookie.split("; ");
+    for (let i = 0; i < cookies.length; i++) {
+        let parts = cookies[i].split("=");
+        if (parts[0] === name) {
+            return decodeURIComponent(parts[1]);
+        }
+    }
+    return null;
 }
 
 function getExpiryDate(days) {
-	let date = new Date();
-	date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-	return date.toUTCString();
+    let date = new Date();
+    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+    return date.toUTCString();
 }
 
 let isim = getIsim();
