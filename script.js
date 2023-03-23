@@ -1,10 +1,9 @@
-// CHART İŞLEMLERİ
 let durumlar = [];
 
 let chartData = {
     labels: [],
     datasets: [{
-        label: 'İndim Şiştim Grafik Tablosu',
+        label: 'Yuppie-Ehh-Poff Chart',
         data: [],
         backgroundColor: 'rgba(233, 255, 92, 0.3)',
         borderColor: 'rgba(233, 255, 92,1)',
@@ -108,7 +107,7 @@ function listele() {
 function getIsim() {
     let isim = getCookie("isim");
     if (!isim) {
-        isim = prompt("Lütfen bir kullanıcı adı girin:");
+        isim = prompt("Please enter a username:");
         if (!isim) {
             isim = "T€st";
         }
