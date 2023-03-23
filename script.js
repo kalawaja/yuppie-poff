@@ -42,24 +42,24 @@ function gonder() {
         let divClass = "";
         if (emoji === "mutlu") {
             divClass = "sonuc-mutlu";
-            if (durumlar.length > 0 && durumlar[0].puan > 0) {
-                puan = durumlar[0].puan + 1.0;
+            if (durumlar.length > 0) {
+                puan = durumlar[0].puan + 1;
             } else {
                 puan = 1;
             }
         } else if (emoji === "uzgun") {
             divClass = "sonuc-uzgun";
-            if (durumlar.length > 0 && durumlar[0].puan < 0) {
+            if (durumlar.length > 0) {
                 puan = durumlar[0].puan - 1;
             } else {
-                puan = -1.0;
+                puan = -1;
             }
         } else {
             divClass = "sonuc-notr";
             if (durumlar.length > 0) {
                 puan = durumlar[0].puan;
             } else {
-                puan = 0.0;
+                puan = 0;
             }
         }
 
