@@ -99,12 +99,12 @@ input[type="radio"] {
     padding: 0.5em;
 }
 
-#result {
+#sonuc {
     padding: 0.1em 0.5em;
 }
 
 
-.result-yuppie {
+.sonuc-mutlu {
     background-color: #1c63ec;
     color: #fff;
     padding: 10px;
@@ -112,7 +112,7 @@ input[type="radio"] {
     margin-bottom: 5px;
 }
 
-.result-ehh {
+.sonuc-notr {
     background-color: #f7f8fa;
     color: #000;
     padding: 10px;
@@ -120,7 +120,7 @@ input[type="radio"] {
     margin-bottom: 5px;
 }
 
-.result-poff {
+.sonuc-uzgun {
     background-color: #ed1b24;
     color: #fff;
     padding: 10px;

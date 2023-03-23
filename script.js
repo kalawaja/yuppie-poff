@@ -1,9 +1,10 @@
+// CHART İŞLEMLERİ
 let durumlar = [];
 
 let chartData = {
     labels: [],
     datasets: [{
-        label: 'Yuppie,Ehh,Poff Chart',
+        label: '(Yuppie | Ehh | Poff) Chart',
         data: [],
         backgroundColor: 'rgba(233, 255, 92, 0.3)',
         borderColor: 'rgba(233, 255, 92,1)',
@@ -40,22 +41,22 @@ function gonder() {
 
         let puan = 0;
         let divClass = "";
-        if (emoji === "yuppie") {
-            divClass = "result-yuppie";
+        if (emoji === "mutlu") {
+            divClass = "sonuc-mutlu";
             if (durumlar.length > 0 && durumlar[0].puan > 0) {
                 puan = durumlar[0].puan + 1.0;
             } else {
                 puan = 1;
             }
-        } else if (emoji === "poff") {
-            divClass = "result-poff";
+        } else if (emoji === "uzgun") {
+            divClass = "sonuc-uzgun";
             if (durumlar.length > 0 && durumlar[0].puan < 0) {
                 puan = durumlar[0].puan - 1;
             } else {
                 puan = -1.0;
             }
         } else {
-            divClass = "result-ehh";
+            divClass = "sonuc-notr";
             if (durumlar.length > 0) {
                 puan = durumlar[0].puan;
             } else {
