@@ -41,15 +41,15 @@ function gonder() {
 
         let puan = 0;
         let divClass = "";
-        if (emoji === "mutlu") {
-            divClass = "sonuc-mutlu";
+        if (emoji === "yuppie") {
+            divClass = "result-yuppie";
             if (durumlar.length > 0 && durumlar[0].puan > 0) {
                 puan = durumlar[0].puan + 1.0;
             } else {
                 puan = 1;
             }
-        } else if (emoji === "uzgun") {
-            divClass = "sonuc-uzgun";
+        } else if (emoji === "poff") {
+            divClass = "result-poff";
             if (durumlar.length > 0 && durumlar[0].puan < 0) {
                 puan = durumlar[0].puan - 1;
             } else {
