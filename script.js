@@ -3,7 +3,7 @@ let durumlar = [];
 let chartData = {
     labels: [],
     datasets: [{
-        label: 'İndim Şiştim Grafik Tablosu',
+        label: 'Yuppie,Ehh,Poff Chart',
         data: [],
         backgroundColor: 'rgba(233, 255, 92, 0.3)',
         borderColor: 'rgba(233, 255, 92,1)',
