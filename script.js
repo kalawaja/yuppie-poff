@@ -42,14 +42,14 @@ function gonder() {
         let divClass = "";
         if (emoji === "yuppie") {
             divClass = "result-yuppie";
-            if (durumlar.length > 0 && durumlar[0].puan > 0) {
+            if (durumlar.length > 0 ) {
                 puan = durumlar[0].puan + 1.0;
             } else {
                 puan = 1;
             }
         } else if (emoji === "poff") {
             divClass = "result-poff";
-            if (durumlar.length > 0 && durumlar[0].puan < 0) {
+            if (durumlar.length > 0 ) {
                 puan = durumlar[0].puan - 1;
             } else {
                 puan = -1.0;
