@@ -61,12 +61,12 @@ B((Ehh)) -- +1 --> C((Poff))
 	i. Profile Photo, <br><br>
 	ii. Emoji, <br><br>
 	iii. Shared Text (with Date and Time information). <br>
-	
-> **Note**: Under the Recent Updates section, the 10 people who have posted most recently will be listed, the most recent will be at the top.
+
+> Note: Under the Recent Updates section, the 10 people who have posted most recently will be listed, the most recent will be at the top.
 
 6. `Featured` section; <br><br>
 	i. Each user will have an up button and a down button next to their post; other users will be able to highlight that person's post with the up and down buttons or vice versa. <br><br>
 	ii. The upward button will be reflected as a +1 contribution to the sender's Score on their profile. <br><br>
 	iii. The down button will be reflected as a -1 contribution to the sender's Score on their profile. <br>
 
-> **Note** : Under the Featured section, the highest `Score` holder will appear in 1st place. Ranked from 1st to 10th place. The score will be determined by the number of clicks on the up button of the person who posted.
+> Note : Under the Featured section, the highest `Score` holder will appear in 1st place. Ranked from 1st to 10th place. The score will be determined by the number of clicks on the up button of the person who posted.
