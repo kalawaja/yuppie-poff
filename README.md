@@ -31,16 +31,12 @@ It is an application that includes graphical and locational filtering of the tex
 #### Three Buttons, Text Area and Submit Button  :
 
 ` Yuppie : 😄 ` ` Ehh : 😐 ` ` Poff : 😕 ` <br><br>
-What do you think? <br>
->> | `You can write up to 255 characters...` |
+**What do you think?** <br>
 
-```mermaid
-sequenceDiagram
-Alice ->> Bob: You can write up to 255 characters...
-Note: dcdscdcdscd<br/>dfdcdcdcd<br/>dcdcdcd<br/>cdcdcdcdc.
-```
+||||
+|--|--|--|
+|`You can write up to 255 characters...`|`Submit`|
 
-`Submit`
 ### Usage
 
 1. `Emoji` : The user will choose an emoji suitable for their mood. 
