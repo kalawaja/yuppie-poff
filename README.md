@@ -31,7 +31,7 @@ It is an application that includes graphical and locational filtering of the tex
 #### Three Buttons, Text Area and Submit Button  :
 
 ` Yuppie : 😄 ` ` Ehh : 😐 ` ` Poff : 😕 ` <br><br>
-<input type="text" placeholder="You can write up to 255 characters..." minlength="1" maxlength="255" size="65"> <br><br>
+<input type="text" placeholder="You can write up to 255 characters..." minlength="1" maxlength="255"> <br><br>
 `Submit`
 
 ### Usage
