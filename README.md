@@ -31,10 +31,8 @@ It is an application that includes graphical and locational filtering of the tex
 #### Three Buttons, Text Area and Submit Button  :
 
 ` Yuppie : 😄 ` ` Ehh : 😐 ` ` Poff : 😕 ` <br><br>
-<label for="textarea">What do you think?</label>
-<textarea rows="5" cols="60" name="textarea">
-You can write up to 255 characters...
-</textarea>
+What do you think?
+<textarea rows="5" cols="60" name="area">You can write up to 255 characters...</textarea>
 
 `Submit`
 ### Usage
