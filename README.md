@@ -31,9 +31,12 @@ It is an application that includes graphical and locational filtering of the tex
 #### Three Buttons, Text Area and Submit Button  :
 
 ` Yuppie : 😄 ` ` Ehh : 😐 ` ` Poff : 😕 ` <br><br>
-<input type="text" placeholder="You can write up to 255 characters..." minlength="1" maxlength="255"> <br><br>
-`Submit`
+<label for="textarea">What do you think?</label>
+<textarea rows="5" cols="60" name="textarea">
+You can write up to 255 characters...
+</textarea>
 
+`Submit`
 ### Usage
 
 1. `Emoji` : The user will choose an emoji suitable for their mood. 
