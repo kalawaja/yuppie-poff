@@ -36,8 +36,8 @@ What do you think? <br>
 
 ```mermaid
 sequenceDiagram
-Alice ->> Bob: Hello Bob, how are you?
-Note right of John: Bob thinks a long<br/>long time, so long<br/>that the text does<br/>not fit on a row.
+Alice ->> Bob: You can write up to 255 characters...
+Note: dcdscdcdscd<br/>dfdcdcdcd<br/>dcdcdcd<br/>cdcdcdcdc.
 ```
 
 `Submit`
