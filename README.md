@@ -30,12 +30,13 @@ It is an application that includes graphical and locational filtering of the tex
 
 #### Three Buttons, Text Area and Submit Button  :
 
-
-<input type="radio" value="Yuppie : 😄" /> `Yuppie : 😄` <input type="radio" value="Ehh : 😐" /> `Ehh : 😐` <input type="radio" value="Poff : 😕" /> `Poff : 😕`
 ` Yuppie : 😄 ` ` Ehh : 😐 ` ` Poff : 😕 ` <br><br>
 What do you think? <br>
-<input type="text" placeholder="You can write up to 255 characters..." minlength="10" maxlength="255" size="65"> <br><br>
-<input type="button" value="Submit" />
+>> | `You can write up to 255 characters...` |
+
+```seq
+Andrew->A
+```
 
 `Submit`
 ### Usage
