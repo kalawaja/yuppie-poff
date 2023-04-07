@@ -35,7 +35,10 @@ What do you think? <br>
 >> | `You can write up to 255 characters...` |
 
 ```seq
-Andrew->A
+Andrew->China: Says Hello 
+Note right of China: China thinks\nabout it 
+China-->Andrew: How are you? 
+Andrew->>China: I am good thanks!
 ```
 
 `Submit`
