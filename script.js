@@ -5,8 +5,8 @@ let chartData = {
     datasets: [{
         label: 'Yuppie-Ehh-Poff Chart',
         data: [],
-        backgroundColor: 'rgba(233, 255, 92, 0.3)',
-        borderColor: 'rgba(233, 255, 92,1)',
+        backgroundColor: 'rgba(13, 110, 253, 0.9)',
+        borderColor: 'rgba(13, 110, 253, 1)',
         color: "#fff",
         borderWidth: 1
     }]
@@ -84,7 +84,8 @@ function gonder() {
         myChart.update();
 
         let sonucDiv = document.getElementById("sonuc");
-        sonucDiv.innerHTML = `<div class="${divClass}"><strong style='font-weight:900'>${isim} (${saat}):</strong> ${text}</div>` + sonucDiv.innerHTML;
+        sonucDiv.innerHTML = `<div class="${divClass} list-group-item list-group-item-action"><span class="badge pill text-bg-primary">${saat}</span>
+        <span class="badge pill text-bg-dark">${isim}</span> <span class="badge pill text-bg-light">${text}</span></div>` + sonucDiv.innerHTML;
         document.getElementById("text").value = "";
 
         listele();
