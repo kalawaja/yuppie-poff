@@ -140,12 +140,12 @@ if (isset($_POST['gonder'])) {
     $ekle = $db->prepare('INSERT INTO yazi SET
     kullanici_id=:kullanici_id,
     yazi_detay=:yazi_detay,
-    yazi_secenek=:yazi_secenek
+    yazi_durum=:yazi_durum
     ');
     $insert = $ekle->execute([
         'kullanici_id' => htmlspecialchars($_SESSION['kullanici_id']),
         'yazi_detay' => htmlspecialchars($_POST['yazi_detay']),
-        'yazi_secenek' => htmlspecialchars($_POST['yazi_secenek'])
+        'yazi_durum' => htmlspecialchars($_POST['yazi_durum'])
     ]);
     if ($insert) {
         header("Location:../index.php?durum=ok");
