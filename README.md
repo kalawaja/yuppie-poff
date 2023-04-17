@@ -1,6 +1,6 @@
 # Yuppie - Poff
 
-It is an application that includes graphical and locational filtering of the text field shares that users write with the `Yuppie`, `Ehh` and `Poff` buttons they choose according to their emotional state.
+It is an application that includes graphical and locational filtering of the text field shares that users write with the `Yuppie`, `Ehh` and `Poff` radio inputs they choose according to their emotional state.
 
 ## Technology 
 
@@ -9,14 +9,13 @@ It is an application that includes graphical and locational filtering of the tex
 3. JavaScript <br>
 	i. EChart.js
 5. PHP <br>
-	ii. phpMyAdmin
+	i. phpMyAdmin <br>
+	ii. MySQL
 
 ## Pages
 
 1. Homepage 
-2. Login <br>
-	i. User Login <br>
-	ii. Admin Login 
+2. Login
 3. Sign Up
 4. Profile
 5. About
@@ -28,7 +27,7 @@ It is an application that includes graphical and locational filtering of the tex
 
 <img src="./echart.png" alt="Yuppie-Poff Chart" width="500">
 
-#### Three Buttons, Text Area and Submit Button  :
+#### Three Radio Inputs, Text Area and Submit Button  :
 
 ` Yuppie : 😄 ` ` Ehh : 😐 ` ` Poff : 😕 ` <br><br>
 **What do you think?** <br>
