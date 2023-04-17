@@ -6,17 +6,17 @@ It is an application that includes graphical and locational filtering of the tex
 
 1. HTML
 2. CSS
-3. JavaScript
+3. JavaScript <br>
 	i. EChart.js
-5. PHP
+5. PHP <br>
 	ii. phpMyAdmin
 
 ## Pages
 
 1. Homepage 
-2. Login
-	1. User Login
-	2. Admin Login 
+2. Login <br>
+	i. User Login <br>
+	ii. Admin Login 
 3. Sign Up
 4. Profile
 5. About
