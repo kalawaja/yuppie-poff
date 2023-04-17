@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Anamakine: 127.0.0.1
--- Üretim Zamanı: 17 Nis 2023, 01:09:07
--- Sunucu sürümü: 10.4.24-MariaDB
--- PHP Sürümü: 8.1.6
+-- Anamakine: localhost:8889
+-- Üretim Zamanı: 17 Nis 2023, 23:17:36
+-- Sunucu sürümü: 5.7.34
+-- PHP Sürümü: 8.0.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -1124,12 +1124,12 @@ CREATE TABLE `kullanici` (
   `kullanici_soyad` varchar(100) COLLATE utf8_turkish_ci NOT NULL,
   `kullanici_mail` varchar(250) COLLATE utf8_turkish_ci NOT NULL,
   `kullanici_password` varchar(50) COLLATE utf8_turkish_ci NOT NULL,
-  `kullanici_profil` varchar(250) COLLATE utf8_turkish_ci NOT NULL,
+  `kullanici_profil` varchar(250) COLLATE utf8_turkish_ci DEFAULT NULL,
   `kullanici_birth` date NOT NULL,
   `kullanici_gender` enum('0','1','2') COLLATE utf8_turkish_ci NOT NULL DEFAULT '0',
   `kullanici_yetki` enum('0','1') COLLATE utf8_turkish_ci NOT NULL DEFAULT '1',
-  `kullanici_sonip` varchar(50) COLLATE utf8_turkish_ci NOT NULL,
-  `kullanici_sonzaman` datetime NOT NULL
+  `kullanici_sonip` varchar(50) COLLATE utf8_turkish_ci DEFAULT NULL,
+  `kullanici_sonzaman` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_turkish_ci;
 
 --
@@ -1137,7 +1137,9 @@ CREATE TABLE `kullanici` (
 --
 
 INSERT INTO `kullanici` (`kullanici_id`, `id`, `kullanici_kad`, `kullanici_ad`, `kullanici_soyad`, `kullanici_mail`, `kullanici_password`, `kullanici_profil`, `kullanici_birth`, `kullanici_gender`, `kullanici_yetki`, `kullanici_sonip`, `kullanici_sonzaman`) VALUES
-(12, 60, 'behrullahats', 'Seyit Behrullah', 'Ateş', 'behrullah@gmail.com', '25f9e794323b453885f5181f1b624d0b', '/userphoto/643c7d0eb9e56.jpg', '2000-10-24', '1', '1', '::1', '2023-04-16 23:57:22');
+(12, 60, 'behrullahats', 'Seyit Behrullah', 'Ateş', 'behrullah@gmail.com', '25f9e794323b453885f5181f1b624d0b', '/userphoto/643c7d0eb9e56.jpg', '2000-10-24', '1', '1', '::1', '2023-04-17 16:43:19'),
+(13, 3, 'kalawaja', 'Ramazan', 'İlter', 'remzilter@gmail.com', '25d55ad283aa400af464c76d713c07ad', '/userphoto/643d8eaee5034.png', '1990-04-01', '1', '1', '::1', '2023-04-17 22:53:32'),
+(14, 1, 'deneme', 'dexxx', 'nexxx', 'me@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '/userphoto/643d916e7c579.png', '2023-04-16', '1', '1', '::1', '2023-04-17 18:30:13');
 
 -- --------------------------------------------------------
 
@@ -1149,21 +1151,23 @@ CREATE TABLE `yazi` (
   `yazi_id` int(11) NOT NULL,
   `kullanici_id` int(11) NOT NULL,
   `yazi_detay` text COLLATE utf8_turkish_ci NOT NULL,
-  `yazi_secenek` enum('0','1','2') COLLATE utf8_turkish_ci NOT NULL,
   `yazi_durum` enum('0','1') COLLATE utf8_turkish_ci NOT NULL DEFAULT '1',
-  `yazi_zaman` timestamp NOT NULL DEFAULT current_timestamp(),
-  `yazi_tarih` date NOT NULL DEFAULT current_timestamp()
+  `yazi_secenek` enum('0','1','2') COLLATE utf8_turkish_ci NOT NULL,
+  `yazi_zaman` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `yazi_tarih` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_turkish_ci;
 
 --
 -- Tablo döküm verisi `yazi`
 --
 
-INSERT INTO `yazi` (`yazi_id`, `kullanici_id`, `yazi_detay`, `yazi_secenek`, `yazi_durum`, `yazi_zaman`, `yazi_tarih`) VALUES
-(7, 10, 'deneme', '0', '1', '2023-04-16 21:18:45', '2023-04-17'),
-(8, 10, 'naber', '1', '1', '2023-04-16 21:18:52', '2023-04-17'),
-(9, 10, 'hello', '0', '1', '2023-04-16 21:18:56', '2023-04-17'),
-(10, 12, 'Merhaba Nasılsınız', '0', '1', '2023-04-16 21:56:31', '2023-04-17');
+INSERT INTO `yazi` (`yazi_id`, `kullanici_id`, `yazi_detay`, `yazi_durum`, `yazi_secenek`, `yazi_zaman`, `yazi_tarih`) VALUES
+(37, 14, 'deneme', '1', '0', '2023-04-17 22:51:33', '2023-04-17 22:51:33'),
+(38, 14, 'bir', '1', '1', '2023-04-17 22:51:39', '2023-04-17 22:51:39'),
+(39, 14, 'adamsın', '1', '2', '2023-04-17 22:51:49', '2023-04-17 22:51:49'),
+(41, 13, 'qqqq', '1', '0', '2023-04-17 22:53:51', '2023-04-17 22:53:51'),
+(42, 13, 'wwwww', '1', '1', '2023-04-17 22:53:54', '2023-04-17 22:53:54'),
+(43, 13, 'eeeee', '1', '2', '2023-04-17 22:53:58', '2023-04-17 22:53:58');
 
 --
 -- Dökümü yapılmış tablolar için indeksler
@@ -1213,13 +1217,13 @@ ALTER TABLE `iller`
 -- Tablo için AUTO_INCREMENT değeri `kullanici`
 --
 ALTER TABLE `kullanici`
-  MODIFY `kullanici_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `kullanici_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `yazi`
 --
 ALTER TABLE `yazi`
-  MODIFY `yazi_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `yazi_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
