@@ -31,7 +31,7 @@ require_once 'sorgu.php';
 
                                 ],
                                 borderColor: [
-                                    '#123edf',
+                                    '#198754',
 
                                 ]
                             },
@@ -52,7 +52,7 @@ require_once 'sorgu.php';
                                     <?php echo $notraralikyazisaycek['say'] ?>
                                 ],
                                 borderColor: [
-                                    '#ff7f00',
+                                    '#ffc107',
 
                                 ]
                             },
@@ -73,7 +73,7 @@ require_once 'sorgu.php';
                                     <?php echo $uzgunaralikyazisaycek['say'] ?>,
                                 ],
                                 borderColor: [
-                                    '#ff0000',
+                                    '#dc3545',
 
                                 ]
                             }
