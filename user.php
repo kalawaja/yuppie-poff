@@ -77,7 +77,7 @@ require_once 'sorgu.php';
                             </div>
                             <div class="form-group">
                                 <label for="inputName">Kullanıcı Adı</label>
-                                <input type="text" class="form-control" name="kullanici_kad" id="inputName" value="<?php echo $kullanicicek['kullanici_kad'] ?>">
+                                <input type="text" disabled class="form-control" name="kullanici_kad" id="inputName" value="<?php echo $kullanicicek['kullanici_kad'] ?>">
                             </div>
                             <div class="form-group">
                                 <label for="inputEmail">E-posta Adresi</label>
