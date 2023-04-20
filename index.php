@@ -126,15 +126,15 @@ require_once 'sorgu.php';
                 $sonuc = explode(" ", $zaman);
             ?>
                 <?php if ($yazicek['yazi_secenek'] == 0) { ?>
-                    <div class="list-group-item list-group-item-action bg-success"><span class="badge pill text-bg-primary"><?php echo $sonuc[1] ?></span>
+                    <div class="list-group-item list-group-item-action bg-white border border-success"><span class="badge pill text-bg-primary"><?php echo $sonuc[1] ?></span>
                         <span class="badge pill text-bg-dark"><?php echo $yazicek['kullanici_ad'] ?></span> <span class="badge pill text-bg-light"><?php echo $yazicek['yazi_detay'] ?></span>
                     </div>
                 <?php } elseif ($yazicek['yazi_secenek'] == 1) { ?>
-                    <div class="list-group-item list-group-item-action bg-warning"><span class="badge pill text-bg-primary"><?php echo $sonuc[1] ?></span>
+                    <div class="list-group-item list-group-item-action bg-white border border-warning"><span class="badge pill text-bg-primary"><?php echo $sonuc[1] ?></span>
                         <span class="badge pill text-bg-dark"><?php echo $yazicek['kullanici_ad'] ?></span> <span class="badge pill text-bg-light"><?php echo $yazicek['yazi_detay'] ?></span>
                     </div>
                 <?php } elseif ($yazicek['yazi_secenek'] == 2) { ?>
-                    <div class="list-group-item list-group-item-action bg-danger"><span class="badge pill text-bg-primary"><?php echo $sonuc[1] ?></span>
+                    <div class="list-group-item list-group-item-action bg-white border border-danger"><span class="badge pill text-bg-primary"><?php echo $sonuc[1] ?></span>
                         <span class="badge pill text-bg-dark"><?php echo $yazicek['kullanici_ad'] ?></span> <span class="badge pill text-bg-light"><?php echo $yazicek['yazi_detay'] ?></span>
                     </div>
             <?php  }
