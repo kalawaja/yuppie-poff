@@ -89,7 +89,7 @@ require_once 'sorgu.php';
         <h2 class="mt-2 mb-2">What Do You Think?</h2>
         <form action="netting/islem.php" method="post">
             <div class="form-floating mt-2">
-                <textarea class="form-control" name="yazi_detay" placeholder="Leave a comment here" id="text"></textarea>
+                <textarea class="form-control" name="yazi_detay" placeholder="Leave a comment here" id="text" required></textarea>
                 <label for="floatingTextarea">Comments</label>
             </div>
             <div class="btn-group mt-2 d-flex" role="group" aria-label="Basic radio toggle button group">
