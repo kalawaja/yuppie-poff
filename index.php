@@ -94,12 +94,15 @@ require_once 'sorgu.php';
             </div>
             <div class="btn-group mt-2 d-flex" role="group" aria-label="Basic radio toggle button group">
 
-                <input type="radio" name="yazi_secenek" class="btn-check" value="0" id="mutlu" autocomplete="off">
+                <input type="radio" name="yazi_secenek" class="btn-check" value="0" id="mutlu" autocomplete="off" checked>
                 <label class="btn btn-outline-success" for="mutlu">😀</label>
+                <span>&nbsp;&nbsp;</span>
                 <input type="radio" name="yazi_secenek" class="btn-check" value="1" id="notr" autocomplete="off">
                 <label class="btn btn-outline-warning" for="notr">😐</label>
+                <span>&nbsp;&nbsp;</span>
                 <input type="radio" name="yazi_secenek" class="btn-check" value="2" id="uzgun" autocomplete="off">
                 <label class="btn btn-outline-danger" for="uzgun">😔</label>
+                <span>&nbsp;&nbsp;</span>
                 <?php
 
                 if (isset($_SESSION['kullanici_mail'])) {
