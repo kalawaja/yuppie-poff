@@ -12,9 +12,9 @@ require_once 'sorgu.php';
                 var myChart = new Chart(chart, {
                     type: 'line',
                     data: {
-                        labels: ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'],
+                        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
                         datasets: [{
-                                label: "Mutlu",
+                                label: "😀 Yuppie",
                                 data: [
                                     <?php echo $mutluocakyazisaycek['say'] ?>,
                                     <?php echo $mutlusubatyazisaycek['say'] ?>,
@@ -36,7 +36,7 @@ require_once 'sorgu.php';
                                 ]
                             },
                             {
-                                label: "Notr",
+                                label: "😐 Ehh",
                                 data: [
                                     <?php echo $notrocakyazisaycek['say'] ?>,
                                     <?php echo $notrsubatyazisaycek['say'] ?>,
@@ -57,7 +57,7 @@ require_once 'sorgu.php';
                                 ]
                             },
                             {
-                                label: "Üzgün",
+                                label: "😔 Poff",
                                 data: [
                                     <?php echo $uzgunocakyazisaycek['say'] ?>,
                                     <?php echo $uzgunsubatyazisaycek['say'] ?>,
@@ -95,13 +95,13 @@ require_once 'sorgu.php';
             <div class="btn-group mt-2 d-flex" role="group" aria-label="Basic radio toggle button group">
 
                 <input type="radio" name="yazi_secenek" class="btn-check" value="0" id="mutlu" autocomplete="off" checked>
-                <label class="btn btn-outline-success" for="mutlu">😀</label>
+                <label class="btn btn-outline-success" for="mutlu">😀 Yuppie</label>
                 <span>&nbsp;&nbsp;</span>
                 <input type="radio" name="yazi_secenek" class="btn-check" value="1" id="notr" autocomplete="off">
-                <label class="btn btn-outline-warning" for="notr">😐</label>
+                <label class="btn btn-outline-warning" for="notr">😐 Ehh</label>
                 <span>&nbsp;&nbsp;</span>
                 <input type="radio" name="yazi_secenek" class="btn-check" value="2" id="uzgun" autocomplete="off">
-                <label class="btn btn-outline-danger" for="uzgun">😔</label>
+                <label class="btn btn-outline-danger" for="uzgun">😔 Poff</label>
                 <span>&nbsp;&nbsp;</span>
                 <?php
 
