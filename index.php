@@ -110,7 +110,7 @@ require_once 'sorgu.php';
                     <button onclick="gonder()" name="gonder" id="submitButton" class="btn btn-primary fw-bold">Submit</button>
                 <?php } else { ?>
                     <a id="submitButton" class="btn btn-danger fw-bold" href="log.php">
-                        Giriş Yap
+                        Sign In
                     </a>
                 <?php } ?>
             </div>
