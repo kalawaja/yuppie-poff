@@ -58,7 +58,7 @@ require_once 'sorgu.php';
                         <h4><?php echo $kullanicicek['kullanici_ad'] . " " . $kullanicicek['kullanici_soyad'] ?></h4>
                         <p><?php echo $kullanicicek['kullanici_kad'] ?></p>
 
-                        <p><?php echo $yazisaycek['say']; ?> Adet Yazı</p>
+                        <p><?php echo $yazisaycek['say']; ?>  Comments</p>
 
 
 
