@@ -64,7 +64,7 @@ require_once 'sorgu.php';
 
                     </div>
                     <div class="card bg-light p-3" id="editProfileForm">
-                        <h5 class="mb-3">Profil Düzenleme</h5>
+                        <h5 class="mb-3">Edit Profile</h5>
                         <form action="netting/islem.php" method="post">
                             <div class="form-group">
                                 <label for="inputName">Ad</label>
