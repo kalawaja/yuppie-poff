@@ -136,7 +136,7 @@ require_once 'sorgu.php';
     var chart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'],
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
             datasets: [{
                 label: 'Yazı Sayısı',
                 backgroundColor: '#007bff',
