@@ -107,7 +107,7 @@ require_once 'sorgu.php';
 
                 if (isset($_SESSION['kullanici_mail'])) {
                 ?>
-                    <button onclick="gonder()" name="gonder" id="submitButton" class="btn btn-primary fw-bold">Gönder</button>
+                    <button onclick="gonder()" name="gonder" id="submitButton" class="btn btn-primary fw-bold">Submit</button>
                 <?php } else { ?>
                     <a id="submitButton" class="btn btn-danger fw-bold" href="log.php">
                         Giriş Yap
