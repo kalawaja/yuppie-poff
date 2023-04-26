@@ -77,7 +77,7 @@ if (isset($_SESSION['kullanici_mail'])) {
                                     <li class="nav-item">
                                         <button class="btn nav-link" type="button">
                                             <i class="bi bi-person-circle me-2"></i>
-                                            <a href="reg.php" class="text-light text-decoration-none">Kayıt Ol</a>
+                                            <a href="reg.php" class="text-light text-decoration-none">Sign Up</a>
                                         </button>
                                     </li>
                                 <?php } ?>
