@@ -138,7 +138,7 @@ require_once 'sorgu.php';
         data: {
             labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
             datasets: [{
-                label: 'Yazı Sayısı',
+                label: 'Comment Statistics',
                 backgroundColor: '#007bff',
                 borderColor: '#007bff',
                 data: [<?php echo $ocakyazisaycek['say']; ?>,
