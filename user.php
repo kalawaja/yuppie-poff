@@ -67,31 +67,31 @@ require_once 'sorgu.php';
                         <h5 class="mb-3">Edit Profile</h5>
                         <form action="netting/islem.php" method="post">
                             <div class="form-group">
-                                <label for="inputName">Ad</label>
+                                <label for="inputName">Name</label>
                                 <input type="text" class="form-control" name="kullanici_ad" id="inputName" value="<?php echo $kullanicicek['kullanici_ad'] ?>">
                             </div>
 
                             <div class="form-group">
-                                <label for="inputName">Soyad</label>
+                                <label for="inputName">Surname</label>
                                 <input type="text" class="form-control" name="kullanici_soyad" id="inputName" value="<?php echo $kullanicicek['kullanici_soyad'] ?>">
                             </div>
                             <div class="form-group">
-                                <label for="inputName">Kullanıcı Adı</label>
+                                <label for="inputName">username</label>
                                 <input type="text" disabled class="form-control" name="kullanici_kad" id="inputName" value="<?php echo $kullanicicek['kullanici_kad'] ?>">
                             </div>
                             <div class="form-group">
-                                <label for="inputEmail">E-posta Adresi</label>
+                                <label for="inputEmail">e-mail</label>
                                 <input type="email" disabled class="form-control" id="inputEmail" value="<?php echo $kullanicicek['kullanici_mail'] ?>">
                             </div>
 
                             <div class="form-row">
 
                                 <div class="form-group col-md-6">
-                                    <label for="inputCity">Şehir</label>
+                                    <label for="inputCity">City</label>
                                     <input disabled class="form-control" id="inputCity" placeholder="<?php echo $kullanicicek['sehiradi'] ?>">
                                 </div>
                             </div>
-                            <button type="submit" name="bilgiguncelle" class="btn btn-primary mt-2">Kaydet</button>
+                            <button type="submit" name="bilgiguncelle" class="btn btn-primary mt-2">Submit</button>
                         </form>
                     </div>
                 </div>
@@ -101,7 +101,7 @@ require_once 'sorgu.php';
                     <div class="card-body">
                         <canvas id="myChart"></canvas>
                         <hr>
-                        <h4>Yazılarım</h4>
+                        <h4>My Comments</h4>
                         <ul class="list-group">
                             <?php
                             $yazisor = $db->prepare("SELECT yazi.*,kullanici.* FROM yazi INNER JOIN kullanici ON yazi.kullanici_id=kullanici.kullanici_id where yazi_durum=:durum and kullanici_mail=:mail order by yazi_zaman DESC");
@@ -115,7 +115,7 @@ require_once 'sorgu.php';
                                 $zaman = $yazicek['yazi_zaman'];
                                 $sonuc = explode(" ", $zaman);
                                 $say++; ?>
-                                <li class="list-group-item d-flex justify-content-between align-items-center">Yazı <?php echo $say ?> - <?php echo $yazicek['yazi_detay'] ?><span class="badge bg-secondary"><?php echo $sonuc[0] ?></span>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">Comment <?php echo $say ?> - <?php echo $yazicek['yazi_detay'] ?><span class="badge bg-secondary"><?php echo $sonuc[0] ?></span>
                                 </li>
                             <?php } ?>
 
