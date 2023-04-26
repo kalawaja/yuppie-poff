@@ -63,7 +63,7 @@ if (isset($_SESSION['kullanici_mail'])) {
                                     <li class="nav-item">
                                         <button class="btn nav-link" type="button">
                                             <i class="bi bi-person-circle me-2"></i>
-                                            <a href="logout.php" class="text-light text-decoration-none">Çıkış Yap</a>
+                                            <a href="logout.php" class="text-light text-decoration-none">Sign Out</a>
                                         </button>
                                     </li>
 
