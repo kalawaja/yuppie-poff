@@ -101,6 +101,8 @@ if (isset($_POST['giris'])) {
 
     if ($say == 1) {
 
+        $kullanici_id = $_SERVER['REMOTE_ADDR'];
+
 
         $kullanici_ip = $_SERVER['REMOTE_ADDR'];
 
@@ -147,7 +149,7 @@ if (isset($_POST['gonder'])) {
         'yazi_detay' => htmlspecialchars($_POST['yazi_detay']),
         'yazi_secenek' => htmlspecialchars($_POST['yazi_secenek'])
     ]);
-   
+
     if ($insert) {
         header("Location:../index.php?durum=ok");
     } else {
@@ -244,5 +246,45 @@ if (isset($_POST['resimguncelle'])) {
     } else {
 
         Header("Location:../profil-ekle.php?durum=hata");
+    }
+}
+
+
+
+if (isset($_POST['begen'])) {
+    if (!isset($_SESSION['kullanici_id'])) {
+        header("location:../log.php?durum=girisyap");
+    } else {
+        $post_id = $_POST['post_id'];
+
+        $user_id = $_SESSION['kullanici_id'];
+
+
+        $ekle = $db->prepare('INSERT INTO likes SET
+        user_id=:user_id,
+        post_id=:post_id
+        ');
+        $insert = $ekle->execute([
+            'user_id' => htmlspecialchars($user_id),
+            'post_id' => htmlspecialchars($post_id)
+        ]);
+
+        if ($insert) {
+            header("Location:../index.php?durum=ok");
+        } else {
+            header("Location:../index.php?durum=no");
+        }
+    }
+}
+if (isset($_GET['begen']) == 'true') {
+    $likepost = $_GET["yazi_id"];
+    $ben = $_SESSION["kullanici_id"];
+    $v = $db->prepare("INSERT into begeni  set begenilen_id=?, begenen_id=? ");
+    $x = $v->execute(array($likepost, $ben));
+
+    if ($x) {
+        header("location:../index.php?durum=ok");
+    } else {
+        header("location:../index.php?durum=no");
     }
 }

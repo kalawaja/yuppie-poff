@@ -24,21 +24,27 @@ if (isset($_SESSION['kullanici_mail'])) {
 }
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-
 <head>
     <meta charset="utf-8">
     <title>Yuppie | Poff</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- font-awesome css -->
-    <link rel="stylesheet" type="text/css" href="css/font-awesome.css">
-</head>
+    <style>
+        .heartButton {
+            border: none;
+            background: transparent;
+        }
 
+        .heartButton:active {
+            filter: drop-shadow(0px 0px 5px rgb(0 0 0 / 0.4));
+        }
+    </style>
+</head>
 <body>
     <div class="container-sm">
 

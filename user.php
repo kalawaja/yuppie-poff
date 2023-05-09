@@ -50,18 +50,45 @@ require_once 'sorgu.php';
                 <div class="card">
                     <div class="card-body text-center">
                         <div class="resim">
-                            <img src="img<?php echo $kullanicicek['kullanici_profil'] ?>" class="rounded-circle mb-3" alt="">
+                            <img src="img<?php echo $kullanicicek['kullanici_profil'] ?>" class="rounded-circle mb-3">
                             <a href="profil-ekle.php">
                                 <i class="fa-sharp fa-solid fa-plus fa-xl"></i>
                             </a>
                         </div>
-                        <h4><?php echo $kullanicicek['kullanici_ad'] . " " . $kullanicicek['kullanici_soyad'] ?></h4>
-                        <p><?php echo $kullanicicek['kullanici_kad'] ?></p>
 
-                        <p><?php echo $yazisaycek['say']; ?>  Comments</p>
+                        <button type="button" class="btn btn-primary mb-3">Follow</button>
 
-
-
+                        <ul class="list-group">
+                            <li class="list-group-item d-flex justify-content-between align-items-start">
+                                <div class="ms-2 me-auto w-100 fs-5">
+                                <div class="fw-bold"><?php echo $kullanicicek['kullanici_ad'] . " " . $kullanicicek['kullanici_soyad'] ?></div>
+                                </div>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-start">
+                                <div class="ms-2 me-auto">
+                                <div class="fw-bold">Comments</div>
+                                </div>
+                                <span class="badge bg-primary rounded-pill"><?php echo $yazisaycek['say']; ?></span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-start">
+                                <div class="ms-2 me-auto">
+                                <div class="fw-bold">Score</div>
+                                </div>
+                                <span class="badge bg-primary rounded-pill">11</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-start">
+                                <div class="ms-2 me-auto">
+                                <div class="fw-bold">Following</div>
+                                </div>
+                                <span class="badge bg-primary rounded-pill">1</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-start">
+                                <div class="ms-2 me-auto">
+                                <div class="fw-bold">Followers</div>
+                                </div>
+                                <span class="badge bg-primary rounded-pill">99</span>
+                            </li>
+                        </ul>
                     </div>
                     <div class="card bg-light p-3" id="editProfileForm">
                         <h5 class="mb-3">Edit Profile</h5>
@@ -71,27 +98,24 @@ require_once 'sorgu.php';
                                 <input type="text" class="form-control" name="kullanici_ad" id="inputName" value="<?php echo $kullanicicek['kullanici_ad'] ?>">
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group mt-2">
                                 <label for="inputName">Surname</label>
                                 <input type="text" class="form-control" name="kullanici_soyad" id="inputName" value="<?php echo $kullanicicek['kullanici_soyad'] ?>">
                             </div>
-                            <div class="form-group">
-                                <label for="inputName">username</label>
+                            <div class="form-group mt-2">
+                                <label for="inputName">Username</label>
                                 <input type="text" disabled class="form-control" name="kullanici_kad" id="inputName" value="<?php echo $kullanicicek['kullanici_kad'] ?>">
                             </div>
-                            <div class="form-group">
-                                <label for="inputEmail">e-mail</label>
+                            <div class="form-group mt-2">
+                                <label for="inputEmail">E-mail</label>
                                 <input type="email" disabled class="form-control" id="inputEmail" value="<?php echo $kullanicicek['kullanici_mail'] ?>">
                             </div>
 
-                            <div class="form-row">
-
-                                <div class="form-group col-md-6">
+                            <div class="form-group mt-2">
                                     <label for="inputCity">City</label>
                                     <input disabled class="form-control" id="inputCity" placeholder="<?php echo $kullanicicek['sehiradi'] ?>">
-                                </div>
                             </div>
-                            <button type="submit" name="bilgiguncelle" class="btn btn-primary mt-2">Submit</button>
+                            <button type="submit" name="bilgiguncelle" class="btn btn-primary mt-2 w-100 fw-bold">Save</button>
                         </form>
                     </div>
                 </div>
@@ -126,9 +150,14 @@ require_once 'sorgu.php';
             </div>
         </div>
         <!-- USER PANEL -->
-        <?php require_once 'footer.php' ?>
     </div>
-</div>
+    
+    </div>
+    <footer class="footer mt-auto mb-2 py-3 bg-light rounded">
+        <div class="container-fluid text-center">
+            <span class="text-muted fw-bold">© <?php echo date("Y"); ?> Yuppie Poff.</span>
+        </div>
+    </footer>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
 <script>
@@ -168,6 +197,9 @@ require_once 'sorgu.php';
         }
     });
 </script>
-</body>
 
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="script.js"></script>
+</body>
 </html>

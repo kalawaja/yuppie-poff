@@ -108,7 +108,7 @@ function listele() {
 function getIsim() {
     let isim = getCookie("isim");
     if (!isim) {
-        isim = prompt("Please enter a username:");
+        //isim = prompt("Please enter a username:");
         if (!isim) {
             isim = "T€st";
         }
