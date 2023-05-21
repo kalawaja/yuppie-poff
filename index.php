@@ -84,7 +84,7 @@
         <form action="netting/islem.php" method="post">
             
             <div class="form-floating mt-2">
-                <textarea class="form-control" name="yazi_detay" id="text" required></textarea>
+                <textarea class="form-control" name="yazi_detay" id="text" required maxlength="160"></textarea>
                 <label for="floatingTextarea">Comments</label>
             </div>
 
