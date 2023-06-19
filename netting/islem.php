@@ -67,7 +67,7 @@ if (isset($_POST['register'])) {
                 if ($insert) {
 
 
-                    header("Location:../log.php?durum=basarili");
+                    header("Location:../log.php?kayit=basarili");
                 } else {
 
 
@@ -85,59 +85,37 @@ if (isset($_POST['register'])) {
         header("location:../reg.php?durum=farklisifre");
     }
 }
-if (isset($_POST['giris'])) {
-
-    $kullanici_mail = htmlspecialchars($_POST['kullanici_mail']);
-    $kullanici_password = md5(htmlspecialchars($_POST['kullanici_password']));
-
-    $kullanicisor = $db->prepare("select * from kullanici where kullanici_mail=:mail and kullanici_yetki=:yetki and kullanici_password=:password");
-    $kullanicisor->execute(array(
-        'mail' => $kullanici_mail,
-        'yetki' => 1,
-        'password' => $kullanici_password,
-    ));
-    $say = $kullanicisor->rowCount();
 
 
-    if ($say == 1) {
-
-        $kullanici_id = $_SERVER['REMOTE_ADDR'];
-
-
-        $kullanici_ip = $_SERVER['REMOTE_ADDR'];
-
-
-
-        $zamanguncelle = $db->prepare("UPDATE kullanici SET
-
-
-			kullanici_sonzaman=:kullanici_sonzaman,
-			kullanici_sonip=:kullanici_sonip
-
-			WHERE kullanici_mail='$kullanici_mail'");
-
-
-        $update = $zamanguncelle->execute(array(
-
-
-            'kullanici_sonzaman' => date("Y-m-d H:i:s"),
-            'kullanici_sonip' => $kullanici_ip
-
-        ));
-
-
-        $_SESSION['kullanici_mail'] = $kullanici_mail;
-
-
-        header("Location:../index.php?durum=girisbasarili");
-        exit;
-    } else {
-
-
-        header("Location:../log.php?durum=hata");
+if (isset($_POST['login'])) {
+    if (empty($_POST['kullanici_mail']) or empty($_POST['kullanici_password'])) {
+        $data['status'] = 'error';
+        $data['message'] = 'Boş girilen yerler var !!!';
+        echo json_encode($data);
         exit;
     }
+
+    $kullanicisor = $db->prepare('SELECT * FROM kullanici where kullanici_mail=:mail and kullanici_password=:pass and kullanici_yetki=:yetki');
+    $kullanicisor->execute([
+        'mail' => htmlspecialchars($_POST['kullanici_mail']),
+        'pass' => md5(htmlspecialchars($_POST['kullanici_password'])),
+        'yetki' => 1
+
+    ]);
+    $say = $kullanicisor->rowCount();
+    if ($say > 0) {
+        $_SESSION['kullanici_mail'] = $_POST['kullanici_mail'];
+        $data['status'] = 'success';
+        $data['message'] = 'Giriş Başarılı';
+        echo json_encode($data);
+    } else {
+        $data['status'] = 'error';
+        $data['message'] = 'Kullanıcı Adı veya Şifre Yanlış!';
+        echo json_encode($data);
+    }
 }
+
+
 if (isset($_POST['gonder'])) {
     $ekle = $db->prepare('INSERT INTO yazi SET
     kullanici_id=:kullanici_id,
@@ -251,40 +229,93 @@ if (isset($_POST['resimguncelle'])) {
 
 
 
-if (isset($_POST['begen'])) {
-    if (!isset($_SESSION['kullanici_id'])) {
-        header("location:../log.php?durum=girisyap");
-    } else {
-        $post_id = $_POST['post_id'];
 
-        $user_id = $_SESSION['kullanici_id'];
-
-
-        $ekle = $db->prepare('INSERT INTO likes SET
-        user_id=:user_id,
-        post_id=:post_id
-        ');
-        $insert = $ekle->execute([
-            'user_id' => htmlspecialchars($user_id),
-            'post_id' => htmlspecialchars($post_id)
-        ]);
-
-        if ($insert) {
-            header("Location:../index.php?durum=ok");
-        } else {
-            header("Location:../index.php?durum=no");
+if (isset($_GET['tiklanma'])) {
+    if ($_GET['tiklanma'] == 'ok') {
+        if ($_GET['durum'] == 1) {
+            $guncelle = $db->prepare("UPDATE  ratings SET
+            tiklanma=:tiklanma
+            
+            WHERE id={$_GET['ratings_id']}
+            ");
+            $update = $guncelle->execute([
+                'tiklanma' => htmlspecialchars(0),
+            ]);
+            if ($update) {
+                header("Location:../index.php?durum=ok");
+            } else {
+                header("Location:../index.php?durum=no");
+            }
         }
     }
 }
-if (isset($_GET['begen']) == 'true') {
-    $likepost = $_GET["yazi_id"];
-    $ben = $_SESSION["kullanici_id"];
-    $v = $db->prepare("INSERT into begeni  set begenilen_id=?, begenen_id=? ");
-    $x = $v->execute(array($likepost, $ben));
 
-    if ($x) {
-        header("location:../index.php?durum=ok");
-    } else {
-        header("location:../index.php?durum=no");
+if (isset($_GET['takip'])) {
+    if ($_GET['takip'] == 'ok') {
+        $takipedilen = $_GET['takipedilen'];
+        $takipeden = $_SESSION['kullanici_id'];
+
+        $sorgu = $db->prepare("SELECT * FROM takip Where kullanici_id_takipeden=:kullanici_id_takipeden and kullanici_id_takipedilen=:kullanici_id_takipedilen");
+
+        $sorgu->execute([
+            'kullanici_id_takipeden' => $takipeden,
+            'kullanici_id_takipedilen' => $takipedilen
+
+        ]);
+        $say = $sorgu->rowCount();
+
+        if ($say > 0) {
+            $sorgucek = $sorgu->fetch(PDO::FETCH_ASSOC);
+            if ($_GET['takipdurum'] == 1) {
+                $takip_id = $_GET['takip_id'];
+                $guncelle = $db->prepare("UPDATE  takip SET
+                kullanici_id_takipeden=:kullanici_id_takipeden,
+                kullanici_id_takipedilen=:kullanici_id_takipedilen,
+                takip_status=:takip_status
+            
+                WHERE takip_id=$takip_id
+                ");
+                $update = $guncelle->execute([
+                    'kullanici_id_takipeden' => htmlspecialchars($takipeden),
+                    'kullanici_id_takipedilen' => htmlspecialchars($takipedilen),
+                    'takip_status' => htmlspecialchars(0)
+                ]);
+                if ($update) {
+                    header("Location:../index.php?durum=ok?takip_id=$takip_id");
+                } else {
+                    header("Location:../index.php?durum=no");
+                }
+            } else {
+                $takip_id = $_GET['takip_id'];
+                $guncelle = $db->prepare("UPDATE  takip SET
+                kullanici_id_takipeden=:kullanici_id_takipeden,
+                kullanici_id_takipedilen=:kullanici_id_takipedilen,
+                takip_status=:takip_status
+            
+                WHERE takip_id=$takip_id
+                ");
+                $update = $guncelle->execute([
+                    'kullanici_id_takipeden' => htmlspecialchars($takipeden),
+                    'kullanici_id_takipedilen' => htmlspecialchars($takipedilen),
+                    'takip_status' => htmlspecialchars(1)
+                ]);
+                if ($update) {
+                    header("Location:../index.php?durum=ok?takip_id=$takip_id");
+                } else {
+                    header("Location:../index.php?durum=no");
+                }
+            }
+        } else {
+            $ekle = $db->prepare('INSERT INTO takip SET
+            kullanici_id_takipeden=:kullanici_id_takipeden,
+            kullanici_id_takipedilen=:kullanici_id_takipedilen,
+            takip_status=:takip_status
+        ');
+            $insert = $ekle->execute([
+                'kullanici_id_takipeden' => htmlspecialchars($takipeden),
+                'kullanici_id_takipedilen' => htmlspecialchars($takipedilen),
+                'takip_status' => htmlspecialchars(1)
+            ]);
+        }
     }
 }

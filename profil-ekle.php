@@ -28,15 +28,14 @@
         <h2>Resim Güncelle</h2>
         <div class="row justify-content-center">
             <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                <form action="netting/islem.php" method="post" enctype="multipart/form-data">
+                <form action="netting/islem.php" method="post" enctype="multipart/form-data" id="uploadform">
                     <div class="mb-3">
                         <label for="password" class="form-label">Yüklenen Resim</label><br>
-                        <img style="width:150px;height:150px;object-fit:cover" src="img<?php echo $kullanicicek['kullanici_profil'] ?>" class="rounded-circle mb-3" alt="">
+                        <img id="profilresim" style="width:150px;height:150px;object-fit:cover" src="img<?php echo $kullanicicek['kullanici_profil'] ?>" class="rounded-circle mb-3" alt="">
                     </div>
                     <div class="mb-3">
                         <label for="text" class="form-label">Resim Yükle</label>
                         <input type="file" class="form-control" id="file" name="kullanici_profil" value="<?php echo $kullanicicek['kullanici_profil'] ?>" aria-describedby="emailHelp">
-
                     </div>
 
                     <input type="hidden" name="eski_yol" value="<?php echo $kullanicicek['kullanici_profil'] ?>">
@@ -46,14 +45,29 @@
         </div>
     </div>
 </div>
-<footer class="footer mt-auto mb-2 py-3 bg-light rounded">
-    <div class="container-fluid">
-        <span class="text-muted">© 2023 Yuppie Poff.</span>
+<footer class="footer mt-3 mb-2 py-2 bg-primary bg-gradient rounded">
+    <div class="container-fluid text-center align-middle">
+        <span class="text-white fw-bold">
+            © <?php echo date("Y"); ?> Yuppie Poff.
+        </span>
     </div>
 </footer>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="script.js"></script>
+<script>
+    $(document).ready(function(e) {
+        $('#file').change(function() {
+            var reader = new FileReader();
+            reader.onload = imageload;
+            reader.readAsDataURL(this.files[0]);
+
+        });
+
+        function imageload(e) {
+            $('#profilresim').attr('src', e.target.result);
+        }
+    });
+</script>
 </body>
 
 </html>

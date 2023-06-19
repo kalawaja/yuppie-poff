@@ -7,70 +7,65 @@ if (!empty($_SESSION['kullanici_mail'])) {
     exit;
 }
 
-?><div class="row mt-2 mb-2">
+?>
+<!-- SWEET ALERT  -->
+<div class="row mt-2 mb-2">
     <div class="col-sm-12 mt-2">
-        <?php
-
-        if ($_GET['durum'] == "hata") { ?>
-
-            <div class="alert alert-danger">
-                <strong>Hata!</strong> Hatalı Giriş
-            </div>
-
-
-        <?php } elseif ($_GET['durum'] == "exit") { ?>
-
-            <div class="alert alert-success">
-                <strong>Bilgi!</strong> Çıkış Yapıldı
-            </div>
-
-
-        <?php } elseif ($_GET['durum'] == "ok") { ?>
-
-            <div class="alert alert-success">
-                <strong>Bilgi!</strong> Kaydınız Başarılı Giriş Yapabilirsiniz.
-            </div>
-
-
-        <?php } elseif ($_GET['durum'] == "captchahata") { ?>
-
-            <div class="alert alert-danger">
-                <strong>Bilgi!</strong> Güvenlik Kodu Hatalı..
-            </div>
-
-
-        <?php } ?>
-        <h2>Giriş Yap</h2>
+        <h2>Log In</h2>
         <div class="row justify-content-center">
             <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                <form action="netting/islem.php" method="post">
+                <form method="post" id="forms">
                     <div class="mb-3">
                         <label for="text" class="form-label">Email address</label>
-                        <input type="text" class="form-control" id="email" name="kullanici_mail" aria-describedby="emailHelp" placeholder="john@doe.com" required>
+                        <input type="text" class="form-control" id="kullanici_mail" name="kullanici_mail" aria-describedby="emailHelp" placeholder="john@doe.com" required>
                         <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" name="kullanici_password" id="password" required>
+                        <input type="password" class="form-control" id="kullanici_password" name="kullanici_password" id="kullanici_password">
                     </div>
-                    <!-- <div class="mb-3 form-check">
-                                <input type="checkbox" class="form-check-input" id="remember">
-                                <label class="form-check-label" for="remember">Remember me</label>
-                            </div> -->
-                    <button type="submit" name="giris" class="btn btn-primary btn-block">Giriş Yap</button>
+                    <input type="hidden" name="login">
+                    <div class="col-12 mb-2">
+                        <button type="submit" class="btn btn-primary bg-gradient fs-5 fw-bold btn-block w-50">Log In</button>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
-<footer class="footer mt-auto mb-2 py-3 bg-light rounded">
-    <div class="container-fluid">
-        <span class="text-muted">© 2023 Yuppie Poff.</span>
+<footer class="footer mt-3 mb-2 py-3 bg-primary bg-gradient rounded">
+    <div class="container-fluid text-center align-middle">
+        <span class="text-white fw-bold">© <?php echo date("Y"); ?> Yuppie Poff. </span>
     </div>
 </footer>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="script.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#forms').submit(function() {
+            var formID = $(this).attr('id');
+            var formDetails = $('#' + formID);
+            $.ajax({
+                type: 'POST',
+                url: 'netting/islem.php',
+                data: formDetails.serialize(),
+                success: function(data) {
+                    veri = JSON.parse(data);
+                    Swal.fire('İşlem Sonucu', veri.message, veri.status).then((value) => {
+                        window.location.href = "index.php";
+                        if (veri.status == 'error') {
+                            window.location.href = "log.php"
+                        }
+                    });
+                }
+            });
+            return false;
+        });
+    });
+</script>
 </body>
 
 </html>

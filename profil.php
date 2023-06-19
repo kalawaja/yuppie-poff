@@ -1,17 +1,57 @@
-<?php
-require_once "header.php";
+<?php require_once "header.php";
+
+$kullanicisor = $db->prepare("SELECT * FROM kullanici  where kullanici_id=:kullanici_id");
+$kullanicisor->execute([
+    'kullanici_id' => $_GET['kullanici_id']
+]);
+$say = $kullanicisor->rowCount();
+$kullanicicek = $kullanicisor->fetch(PDO::FETCH_ASSOC);
 
 $yazisay = $db->prepare("SELECT COUNT(kullanici_id) as say FROM yazi where  yazi_durum=:durum and kullanici_id=:id");
 $yazisay->execute(array(
-    'id' => $_SESSION['kullanici_id'],
+    'id' => $_GET['kullanici_id'],
     'durum' => 1
 
 ));
-
 $yazisaycek = $yazisay->fetch(PDO::FETCH_ASSOC);
+
 
 require_once 'sorgu.php';
 ?>
+
+<style>
+    .resim {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .resim img {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+
+    }
+
+    .resim i {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        top: 120px;
+        left: 180px;
+        padding: 20px;
+        background-color: #0D6EFD;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #goster {
+        display: none;
+    }
+</style>
 
 <div class="row mt-2 mb-2">
     <div class="col-sm-12 mt-2">
@@ -22,30 +62,37 @@ require_once 'sorgu.php';
                     <div class="card-body text-center">
                         <div class="resim">
                             <img src="img<?php echo $kullanicicek['kullanici_profil'] ?>" class="rounded-circle mb-3">
-                            <a href="profil-ekle.php">
-                                <i class="bi bi-person-gear"></i>
-                            </a>
+                            <?php if ($_SESSION['kullanici_id'] == $_GET['kullanici_id']) { ?>
+
+
+                                <a href="profil-ekle.php">
+                                    <i class="fa-sharp fa-solid fa-plus fa-xl"></i>
+                                </a>
+                            <?php } ?>
                         </div>
+                        <?php if ($_SESSION['kullanici_id'] == $_GET['kullanici_id']) { ?>
+                            <button type="button" class="btn btn-primary mb-3">Profil Düzenle</button>
+                            <?php } else {
 
-                        <div class="container w-50 mb-3 fs-3">
-                            <div class="row">
-                                <div class="col-3">
-                                    <a href="https://twitter.com/#" target="_blank"><i class="bi bi-twitter"></i></a>
-                                </div>
-                                <div class="col-3">
-                                    <a href="https://facebook.com/#" target="_blank"><i class="bi bi-facebook"></i></a>
-                                </div>
-                                <div class="col-3">
-                                    <a href="https://instagram.com/#" target="_blank"><i class="bi bi-instagram"></i></a>
-                                </div>
-                                <div class="col-3">
-                                    <a href="https://github.com/#" target="_blank"><i class="bi bi-github"></i></a>
-                                </div>
-                            </div>
-                        </div>
+                            if (!empty($_SESSION['kullanici_mail'])) {
+                                $sorgu = $db->prepare("SELECT * FROM takip Where kullanici_id_takipedilen=:id");
 
-                        <button type="button" class="btn btn-primary mb-3"><a href="edit.php" class="text-decoration-none text-light">Edit Your Profile</a></button>
+                                $sorgu->execute([
+                                    'id' => $_GET['kullanici_id']
+                                ]);
+                                $sorgucek = $sorgu->fetch(PDO::FETCH_ASSOC);
+                                if ($sorgucek['takip_status'] == 0) {
+                            ?>
+                                    <a href="netting/islem.php?takip=ok&takipedilen=<?php echo $_GET['kullanici_id'] ?>&takipeden=<?php echo $_SESSION['kullanici_id'] ?>&takipdurum=0&takip_id=<?php echo $sorgucek['takip_id'] ?>" type="button" class="btn btn-primary mb-3">Follow</a>
 
+                                <?php } else if ($sorgucek['takip_status'] == 1) { ?>
+                                    <a href="netting/islem.php?takip=ok&takipedilen=<?php echo $_GET['kullanici_id'] ?>&takipeden=<?php echo $_SESSION['kullanici_id'] ?>&takipdurum=1&takip_id=<?php echo $sorgucek['takip_id'] ?>" type="button" class="btn btn-success mb-3">Takip Ediliyor</a>
+                                <?php  }
+                            } else { ?>
+                                <a href="log.php" type="button" class="btn btn-primary mb-3">Giriş Yap</a>
+
+                        <?php }
+                        } ?>
                         <ul class="list-group">
                             <li class="list-group-item d-flex justify-content-between align-items-start">
                                 <div class="ms-2 me-auto w-100 fs-5">
@@ -63,32 +110,39 @@ require_once 'sorgu.php';
                                     <div class="fw-bold">Score</div>
                                 </div>
                                 <?php
-
                                 $scorsay = $db->prepare("SELECT COUNT(*) AS beğeni_sayısı FROM ratings where yazikullanici_id=:id and status=:st");
                                 $scorsay->execute(array(
-                                    'id' => $_SESSION['kullanici_id'],
+                                    'id' => $_GET['kullanici_id'],
                                     'st' => 'like'
 
                                 ));
-
                                 $scorsaycek = $scorsay->fetch(PDO::FETCH_ASSOC);
                                 $disscorsay = $db->prepare("SELECT COUNT(*) AS beğenmeme_sayısı FROM ratings where yazikullanici_id=:id and status=:st");
                                 $disscorsay->execute(array(
-                                    'id' => $_SESSION['kullanici_id'],
+                                    'id' => $_GET['kullanici_id'],
                                     'st' => 'dislike'
 
                                 ));
                                 $disscorsaycek = $disscorsay->fetch(PDO::FETCH_ASSOC);
 
+
                                 ?>
                                 <span class="badge bg-primary rounded-pill">
+
+
+
 
                                     <?php
                                     $pozitif = $scorsaycek['beğeni_sayısı'];
                                     $negatif = $disscorsaycek['beğenmeme_sayısı'];
 
                                     echo $deger = $pozitif - $negatif;
+
+
+
+
                                     ?>
+
 
                                 </span>
                             </li>
@@ -106,23 +160,22 @@ require_once 'sorgu.php';
                             </li>
                         </ul>
                     </div>
-                
+
                 </div>
             </div>
-            <div class="col-md-9 mb-2">
+            <div class="col-md-9">
                 <div class="card">
                     <div class="card-body">
-
                         <canvas id="myChart"></canvas>
-
-                        <h4 class="fw-4 mt-3 mb-3">My Comments</h4>
+                        <hr>
+                        <h4>My Comments</h4>
                         <ul class="list-group">
                             <?php
-                            $yazisor = $db->prepare("SELECT yazi.*,kullanici.* FROM yazi INNER JOIN kullanici ON yazi.kullanici_id=kullanici.kullanici_id where yazi_durum=:durum and kullanici_mail=:mail order by yazi_zaman DESC");
+                            $yazisor = $db->prepare("SELECT yazi.*,kullanici.* FROM yazi INNER JOIN kullanici ON yazi.kullanici_id=kullanici.kullanici_id where yazi_durum=:durum and kullanici.kullanici_id=:kullanici_id order by yazi_zaman DESC");
 
                             $yazisor->execute([
                                 'durum' => 1,
-                                'mail' => $_SESSION['kullanici_mail']
+                                'kullanici_id' => $_GET['kullanici_id']
                             ]);
                             $say = 0;
 
@@ -136,26 +189,15 @@ require_once 'sorgu.php';
                                     });
                                 </script>
                                 <?php
-                                $limit = 160;
+                                $limit = 255;
                                 if (mb_strlen($yazicek['yazi_detay']) <= $limit) {
                                     if ($yazicek['yazi_secenek'] == 0 or $yazicek['yazi_secenek'] == 1 or $yazicek['yazi_secenek'] == 2) {
                                         $zaman = $yazicek['yazi_zaman'];
                                         $sonuc = explode(" ", $zaman);
                                         $say++; ?>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center w-100 mb-2 rounded">Comment <?php echo $say ?> - <?php echo $yazicek['yazi_detay'] ?><span class="badge bg-secondary"><?php echo $sonuc[0] ?></span>
 
-                                        <li class="d-flex justify-content-between mb-2 align-middle gap-2">
-                                    
-                                                <div class="card w-100">
-                                                    <div class="card-body">
-                                                        <?php echo $yazicek['yazi_detay'] ?>
-                                                    </div>
-                                                    <div class="card-footer">
-                                                        <?php echo $sonuc[0] ?>
-                                                    </div>
-                                                </div>
-                                            
-                                                
-                                            
+
                                             <?php
 
                                             $kullanicibegenisor = $db->prepare("SELECT distinct kullanici.kullanici_id,kullanici.kullanici_profil,yazi.kullanici_id,kullanici.kullanici_ad,ratings.user_id,ratings.yazikullanici_id
@@ -169,30 +211,37 @@ require_once 'sorgu.php';
                                                 'st' => 'like'
                                             ]);
 
+
+
                                             $begenisaysor = $db->prepare("SELECT COUNT(*) AS begenensayi FROM ratings WHERE post_id=:post_id and yazikullanici_id=:yazikullanici_id and status=:st");
 
                                             $begenisaysor->execute([
                                                 'post_id' => $yazicek['yazi_id'],
-                                                'yazikullanici_id' => $_SESSION['kullanici_id'],
+                                                'yazikullanici_id' => $_GET['kullanici_id'],
                                                 'st' => 'like'
                                             ]);
                                             $begenicek = $begenisaysor->fetch(PDO::FETCH_ASSOC);
                                             $begeniadeti = $begenicek['begenensayi'];
 
-                                            ?>
 
+
+                                            ?>
                                             <div class="dropdown">
-                                                <button class="btn btn-primary bg-gradient dropdown-toggle w-100" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    Beğenen Kullanıcılar (<?php
+                                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    Beğenen Kullanıcılar(
+                                                    <?php
                                                     if ($begeniadeti == 0) {
                                                         echo "0";
                                                     } else if ($begeniadeti > 0) {
                                                         echo $begeniadeti;
                                                     }
-                                                    ?>)
+
+                                                    ?>
+                                                    )
                                                 </button>
-                                                <ul class="dropdown-menu dropdown-menu-primary">
+                                                <ul class="dropdown-menu dropdown-menu-dark">
                                                     <?php while ($kullanicibegenicek = $kullanicibegenisor->fetch(PDO::FETCH_ASSOC)) {
+
 
                                                     ?>
                                                         <li>
@@ -206,30 +255,34 @@ require_once 'sorgu.php';
                                                     <?php } ?>
                                                 </ul>
                                             </div>
-
                                         </li>
                             <?php }
                                 }
                             } ?>
-                        </ul>
 
+                            <!-- Diğer yazılar buraya gelecek
+                        -->
+                        </ul>
                     </div>
-                            
+
                 </div>
-                <footer class="footer mt-3 mb-2 py-2 bg-primary bg-gradient rounded">
-                    <div class="container-fluid text-center align-middle">
-                        <span class="text-white fw-bold">
-                            © <?php echo date("Y"); ?> Yuppie Poff.
-                        </span>
-                    </div>
-                </footer>
             </div>
         </div>
+        <!-- USER PANEL -->
     </div>
+
 </div>
+<footer class="footer mt-3 mb-2 py-2 bg-primary bg-gradient rounded">
+    <div class="container-fluid text-center align-middle">
+        <span class="text-white fw-bold">
+            © <?php echo date("Y"); ?> Yuppie Poff.
+        </span>
+    </div>
+</footer>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/jquery-ui.min.js"></script>
 <script>
     var ctx = document.getElementById('myChart').getContext('2d');
     var chart = new Chart(ctx, {
@@ -268,5 +321,6 @@ require_once 'sorgu.php';
     });
 </script>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
